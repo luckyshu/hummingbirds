@@ -1,0 +1,29 @@
+.background {
+  fill: #fff;
+  stroke: #aaa;
+  stroke-width: 1.5px;
+  pointer-events: none;
+}
+
+#states {
+  fill: #aaa;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.highlight {
+  fill: #8FBCDB;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+
+#states .active {
+  fill: #8FBCDB;
+}
+
+#circles {
+  fill: steelblue;
+  fill-opacity: .8;
+  stroke: #fff;
+}

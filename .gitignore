@@ -1,0 +1,4 @@
+*.pyc
+*.tmp
+*.log
+news_records

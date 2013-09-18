@@ -23,6 +23,9 @@
         padding-top: 70px;
       }
 
+      .navbar{
+        font-size: 18px;
+      }
       .accordion-heading .accordion-toggle{
          font-size: 20px;
          color: #000000;
@@ -41,6 +44,13 @@
           margin-right: -20px;
         }
       }
+
+      .table-striped{
+        background-color: #DEFFFF;
+        font-family: "sans-serif";
+        font-weight: normal;
+      }
+      
     </style>
   </head>
   
@@ -55,7 +65,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index">HummingBirds</a>
+          <a class="navbar-brand" href="index"><font size="5">HummingBirds</font></a>
         </div>
         <div class="navbar-collapse collapse">
           {% macro nav_link(endpoint, name) %}

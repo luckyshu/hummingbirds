@@ -17,10 +17,11 @@ def index():
 def news():
     d = []
     cursor = g.db.cursor()
-    s = """select id, title, text, clicks, url, pic from news join (select distinct news_trend.newsid as maxid from (select news.id as newsid, clicks, trend_news_junction.trend_id as trendid from news join trend_news_junction on news.id = trend_news_junction.news_id) as news_trend join (select trend_news_junction.trend_id as trendid2, max(clicks) as maxclicks from news join trend_news_junction on news.id = trend_news_junction.news_id where clicks > 30 group by trend_news_junction.trend_id) as max_clicks on news_trend.trendid = max_clicks.trendid2 and news_trend.clicks = max_clicks.maxclicks) as max on news.id = max.maxid order by id desc limit 10;
+    s = """select id, title, text, clicks, url, pic, last_updated from news join (select distinct news_trend.newsid as maxid from (select news.id as newsid, clicks, trend_news_junction.trend_id as trendid from news join trend_news_junction on news.id = trend_news_junction.news_id) as news_trend join (select trend_news_junction.trend_id as trendid2, max(clicks) as maxclicks from news join trend_news_junction on news.id = trend_news_junction.news_id where clicks > 30 group by trend_news_junction.trend_id) as max_clicks on news_trend.trendid = max_clicks.trendid2 and news_trend.clicks = max_clicks.maxclicks) as max on news.id = max.maxid order by last_updated desc limit 20;
     """
     cursor.execute(s)
     rows = cursor.fetchall()
+    print rows
     id = 1
     for row in rows:
         news = {}
@@ -30,6 +31,8 @@ def news():
         news['clicks'] = row[3]
         news['url'] = row[4]
         news['pic'] = row[5]
+        timestamp = int(row[6])
+        news['last_updated'] = time.strftime('%d %b %Y %H:%M:%S', time.localtime(timestamp))
         trends = []
         cities = []
         related = []
@@ -60,8 +63,8 @@ def news():
         news['trends'] = ', '.join(trends)
         news['city'] = ', '.join(cities)
         
-        s = 'select id, title, text, clicks, url, pic from news join (select distinct news_id as id2 from trend_news_junction where trend_id in (select trend_id from trend_news_junction where news_id = %s) and news_id != %s) as related on news.id = related.id2 where clicks > 30 limit 5'
-        cursor.execute(s, (row[0], row[0]))
+        s = 'select id, title, text, clicks, url, pic, last_updated from news join (select distinct news_id as id2 from trend_news_junction where trend_id in (select trend_id from trend_news_junction where news_id = %s) and news_id != %s) as related on news.id = related.id2 where clicks > 30 and clicks < %s order by clicks desc limit 5'
+        cursor.execute(s, (row[0], row[0], row[3]))
         related_rows = cursor.fetchall()
         sub_id = 1
         for related_row in related_rows:
@@ -72,12 +75,14 @@ def news():
             related_new['clicks'] = related_row[3]
             related_new['url'] = related_row[4]
             related_new['pic'] = related_row[5]
+            timestamp = int(row[6])
+            related_new['last_updated'] = time.strftime('%d %b %Y %H:%M:%S', time.localtime(timestamp))
             related.append(related_new)
             sub_id += 1
         news['related'] = related
         d.append(news)
         id += 1 
-    print d
+    #print d
     return render_template('news.html', d = d)
 
 @app.route('/about')

@@ -64,8 +64,8 @@ def checkRelated(link, l, keywords):
         g = goose.Goose()
         article = g.extract(url=link)
         title = article.title
-        meta = article.meta_description[:150]
-        text = article.cleaned_text[:150]
+        meta = article.meta_description[:150].encode('utf-8').strip()
+        text = article.cleaned_text[:150].encode('utf-8').strip()
         if title is None or text is None or title == '' or text == '':
             return False
         p = re.compile('(@[A-Za-z0-9_]+)|([^0-9A-Za-z \&\t])|(\w+:\/\/\S+)')

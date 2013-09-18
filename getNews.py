@@ -77,16 +77,18 @@ def getNewsInfo(links):
             titles.append(title)
             info['title'] = title
             info['link'] = link
-            info['meta'] = article.meta_description[:150]
+            info['meta'] = article.meta_description[:150].encode('utf-8').strip()
             info['pic'] = None
             if article.top_image is not None:
                 info['pic'] = article.top_image.src
+            if info['pic'].find('.jpg') == -1 and info['pic'].find('.png') == -1:
+                continue
             #info['category'] = getCategory(link)
             info['clicks'] = getClicks(link)
             info['link_ts'] = str(int(time.time()))
             info['text'] = None
             if article.cleaned_text is not None:
-                info['text'] = article.cleaned_text[:150]
+                info['text'] = article.cleaned_text[:150].encode('utf-8').strip() + '...'
             if info['text'] is None or info['text'] == '' or info['pic'] is None or info['pic'] == '':
                 continue
             news.append(info)

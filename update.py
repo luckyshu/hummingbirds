@@ -128,7 +128,7 @@ for city in cities[city_group_id]:
                 newsresults = open(news_records, 'a')
                 news_list = getNews.getNewsInfo(new_links)
                 for news in news_list:
-                    print news['link_ts'], news['clicks'], news['link'], news['title'], news['meta'], news['pic'], news['text'], links[news['link']]
+                    #print news['link_ts'], news['clicks'], news['link'], news['title'], news['meta'], news['pic'], news['text'], links[news['link']]
                     cursor.execute(news_insert_query, (news['link_ts'], news['clicks'], news['link'], news['title'], news['meta'], news['pic'], news['text'], links[news['link']]))
                     news_id = db.insert_id()
                     newsresults.write('%s,%s\n' % (news['link'], news_id))

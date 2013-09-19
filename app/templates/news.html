@@ -21,17 +21,17 @@
                   </a>
                 </div>
                 <div class="media" style="margin-left:15px">
-                  <a class="pull-left" href="#">
+                  <a class="pull-left" href="{{news['url']}}" target="_blank">
                     <img class="media-object" src="{{news['pic']}}" height="180" width="180">
                   </a>
                   <div class="media-body">
                     <div class="media">
                       {{news['text']}}
-                      <a href={{news['url']}}>Read more</a>
+                      <a href="{{news['url']}}" target="_blank">Read more</a>
                     </div>
                     <br>
                     <p>
-                      Last updated: {{news['last_updated']}}
+                      Last updated (PDT): {{news['last_updated']}}
                     </p>
                     <p>
                       Trending in: {{news['city']}}
@@ -62,7 +62,7 @@
                             <div id="{{related_news['id']}}" class="accordion-body collapse" style="height: 0px;">
                               <div class="accordion-inner">
                                 <div class="media">
-                                  <a class="pull-left" href="#">
+                                  <a class="pull-left" href="{{related_news['url']}}" target="_blank">
                                     <img class="media-object" src="{{related_news['pic']}}" height="120" width="120">
                                   </a>
                                   <div class="media-body">
@@ -70,10 +70,10 @@
                                       {{related_news['text']}}
                                     </div>
                                     <p>
-                                      <a href="{{related_news['url']}}">Read more</a>
+                                      <a href="{{related_news['url']}}" target="_blank">Read more</a>
                                     </p>
                                     <p>
-                                      Last updated: {{related_news['last_updated']}}
+                                      Last updated (PDT): {{related_news['last_updated']}}
                                     </p>
                                   </div>
                                 </div>

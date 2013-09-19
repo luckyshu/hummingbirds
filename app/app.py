@@ -21,18 +21,17 @@ def news():
     """
     cursor.execute(s)
     rows = cursor.fetchall()
-    print rows
     id = 1
     for row in rows:
         news = {}
         news['id'] = "collapse" + str(id)
-        news['title'] = row[1]
-        news['text'] = row[2]
+        news['title'] = unicode(row[1], errors='ignore')
+        news['text'] = unicode(row[2], errors='ignore')
         news['clicks'] = row[3]
         news['url'] = row[4]
         news['pic'] = row[5]
         timestamp = int(row[6])
-        news['last_updated'] = time.strftime('%d %b %Y %H:%M:%S', time.localtime(timestamp))
+        news['last_updated'] = time.strftime('%b %d %Y %H:%M:%S', time.localtime(timestamp))
         trends = []
         cities = []
         related = []
@@ -70,13 +69,13 @@ def news():
         for related_row in related_rows:
             related_new = {}
             related_new['id'] = "collapse" + str(id) + str(sub_id)
-            related_new['title'] = related_row[1]
-            related_new['text'] = related_row[2]
+            related_new['title'] = unicode(related_row[1], errors='ignore')
+            related_new['text'] = unicode(related_row[2], errors='ignore')
             related_new['clicks'] = related_row[3]
             related_new['url'] = related_row[4]
             related_new['pic'] = related_row[5]
             timestamp = int(row[6])
-            related_new['last_updated'] = time.strftime('%d %b %Y %H:%M:%S', time.localtime(timestamp))
+            related_new['last_updated'] = time.strftime('%b %d %Y %H:%M:%S', time.localtime(timestamp))
             related.append(related_new)
             sub_id += 1
         news['related'] = related
@@ -102,4 +101,5 @@ def db_disconnect(exception=None):
     g.db.close()
     
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(host='0.0.0.0', debug = True)
+

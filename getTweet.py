@@ -61,7 +61,7 @@ def getTweets(city, trend):
                 continue
 
         #parse user location
-        d['location'] = result['user']['location'].strip()
+        d['location'] = result['user']['location'].encode('utf-8').strip()
 
         #parse create time of tweet
         timestamp = result['created_at']
@@ -73,7 +73,7 @@ def getTweets(city, trend):
         urls = result['entities']['urls']
         d['url'] = None
         if len(urls) > 0:
-            d['url'] = urls[0]['expanded_url']
+            d['url'] = urls[0]['expanded_url'].encode('utf-8').strip()
         l.append(d)
    
     # get sentiment of tweets

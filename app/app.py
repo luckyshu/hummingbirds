@@ -89,9 +89,9 @@ def news():
 def about():
     return render_template('about.html')
 
-@app.route('/slideshare')
-def slideshare():
-    return render_template('slideshare.html')
+@app.route('/slides')
+def slides():
+    return render_template('slides.html')
 
 @app.before_request
 def db_connect():

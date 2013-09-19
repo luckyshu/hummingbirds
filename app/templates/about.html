@@ -2,8 +2,54 @@
 
 {% block content %}
       <!-- Main component for a primary marketing message or call to action -->
-      <div>
-        <h1>Shu Liu</h1>
-      </div>
-      
+<div class="row">
+	<div class="col-lg-3">
+		<img src="static/img/Shu_SF.jpg" width="265" height="190">
+		<br>
+		<br>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">About me</h3>
+			</div>
+			<div class="panel-body">
+			I am a PhD candidate of computer science and engineering in the Univeristy of Notre Dame. In the past two years, I collected mobile data from 200 smartphones and analyzed the proximity patterns among devices. For me, big data is full of opportunities and challenges and I will take both of them in my career. More information: <a href="http://www.nd.edu/~sliu6">www.nd.edu/~sliu6</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-9">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">About the project</h3>
+			</div>
+			<div class="panel-body">
+			HummingBirds is incubated from InsightDataScience in 2013. This application helps people get the trending news efficiently based on trends in Twitter. When the phrase of trend is ambiguous, it is quite time consuming for people to get the idea. By gathering related information with Twitter API and Bit.ly API, news is listed with the related trend order by timestamp. 
+			</div>
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">How to find related news</h3>
+			</div>
+			<div class="panel-body">
+			<p>Links: links in tweets and Bit.ly search results</p>
+			<p>Trend phrase set: [tread words, most frequent words in tweets]</p>
+			<p>News info set: [title, meta info, first 150 words in article text]</p>
+			<p>Method: keyword searching </p>
+			</div>
+		</div>
+
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">How to analyze sentiment of trend</h3>
+			</div>
+			<div class="panel-body">
+			<p>Tweets: use Twitter API to search the related 100 tweets</p>
+			<p>NLTK method: use 100000+ pre-classified tweets as train set for classifier training and use 10000 as test set. False Negative: ~40%, False Postive: ~50%</p>
+			<p>Token method: use words with pre-computed sentiment score to calculate the sentiment score of tweets. False Negative: ~10%, False Postive: ~20%</p>
+		</div>
+	</div>
+	
+</div>
+
 {% endblock %}

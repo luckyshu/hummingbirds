@@ -19,24 +19,24 @@ city_group_id = int(sys.argv[1])
 news_file = 'news_records'
 
 trend_insert_query = """
-    INSERT INTO TREND
+    INSERT INTO trend 
     (last_updated, phrase, city)
     VALUES
     (%s, %s, %s)
     """
 tweet_insert_query = """
-    INSERT INTO TWEET
+    INSERT INTO tweet
     (created_at, trend_id, text, location, user, sentiment, url)
     VALUES
     (%s, %s, %s, %s, %s, %s, %s)
     """
 trend_update = """
-    UPDATE TREND
+    UPDATE trend
     SET positive_sentiment=%s, neutral_sentiment=%s, negative_sentiment=%s, keywords=%s
     WHERE id=%s
     """
 news_insert_query = """
-    INSERT INTO NEWS
+    INSERT INTO news
     (last_updated, clicks, url, title, meta, pic, text, source)
     VALUES
     (%s, %s, %s, %s, %s, %s, %s, %s)

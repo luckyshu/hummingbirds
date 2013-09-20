@@ -51,9 +51,18 @@ def news():
         for city_row in city_rows:
             if city_row[0] != 'United States':
                 cities.append(city_row[0])
-                positive_sentiment += city_row[1]
-                negative_sentiment += city_row[2]
-                neutral_sentiment += city_row[3]
+		if city_row[1] is None: 
+		    positive_sentiment += 0
+		else:
+                    positive_sentiment += city_row[1]
+		if city_row[2] is None:
+		    negative_sentiment += 0
+		else:
+		    negative_sentiment += city_row[2]
+		if city_row[3] is None:
+		    neutral_sentiment += 0
+		else:
+                    neutral_sentiment += city_row[3]
         news['positive'] = round(positive_sentiment / float(len(city_rows)), 2)
         #news['negative'] = round(negative_sentiment / float(len(city_rows)), 2)
         news['neutral'] = round(neutral_sentiment / float(len(city_rows)), 2)

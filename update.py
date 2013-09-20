@@ -60,6 +60,7 @@ for city in cities[city_group_id]:
     trends = getTrends.getTwitterTrends(city)
     ts = int(time.time())
     try:
+	cursor.execute('update news set last_updated = %s where id = 191', (str(int(time.time()))))
         for trend in trends:
             print trend
             positive = 0

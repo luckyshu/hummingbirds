@@ -75,7 +75,7 @@ def getNewsInfo(links):
             if not util.checkUnique(title, titles):
                 continue
             titles.append(title)
-            info['title'] = title
+            info['title'] = title.encode('utf-8').strip()
             info['link'] = link
             info['meta'] = article.meta_description[:150].encode('utf-8').strip()
             info['pic'] = None

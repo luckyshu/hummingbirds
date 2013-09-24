@@ -16,7 +16,10 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#{{news['id']}}">  
-                    {{news['title']}}
+		     {% if news['related']|length > 0 %}
+		     	<i class="icon-large icon-plus-sign"></i>
+		     {% endif %}
+		     {{news['title']}}
                     <span class="badge" style="float:right">clicks: {{news['clicks']}}</span>
                   </a>
                 </div>

@@ -100,5 +100,18 @@
     <script type="text/javascript" src="../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript">
+    $(".icon-minus-sign, .icon-plus-sign").click(function() {
+       var $this = $(this);
+       if ($this.hasClass("icon-plus-sign")) {
+          $this.removeClass("icon-plus-sign").addClass("icon-minus-sign");
+          return;
+       }
+       if ($this.hasClass("icon-minus-sign")) {
+          $this.removeClass("icon-minus-sign").addClass("icon-plus-sign");
+          return;
+       }
+    });
+    </script>
   </body>
 </html>

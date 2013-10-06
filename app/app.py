@@ -15,11 +15,14 @@ app = Flask(__name__)
 #@app.route('/index')
 #def index():
     #return render_template('index.html')
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+APP_STATIC = os.path.join(APP_ROOT, 'static')
 
 @app.route('/')
 @app.route('/news')
 def news():
-    content_path = os.path.join(os.path.curdir, 'content.data')
+    content_path = os.path.join(APP_STATIC, 'content.data')
+    content_bak_path = os.path.join(APP_STATIC, 'content.data.bak')
     d = []
     if os.path.exists(content_path):
         content = open(content_path, 'r')
@@ -27,7 +30,7 @@ def news():
             d = json.loads(line)
         content.close()
     else:
-        content = open('content.data.bak', 'r')
+        content = open(content_bak_path, 'r')
         for line in content:
             d = json.loads(line)
         content.close()

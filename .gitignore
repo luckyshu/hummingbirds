@@ -2,4 +2,5 @@
 *.tmp
 *.log
 *.rtf
+*.data
 news_records

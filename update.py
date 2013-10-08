@@ -10,8 +10,8 @@ import util
 import json
 import os
 
+#cities to fetch trend
 cities = [['United States'], ['San Francisco', 'New York', 'Chicago'], ['Seattle', 'Washington', 'Houston'], ['Indianapolis', 'Boston', 'Miami'], ['Phoenix', 'Denver', 'Los Angeles']]
-
 
 db = MySQLdb.connect("localhost","insight","1234","hummingbirds")
 cursor = db.cursor()
